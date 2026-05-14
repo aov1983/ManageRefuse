@@ -1,9 +1,11 @@
 package com.refund.app.data.repository
 
 import com.refund.app.data.local.SubscriptionDao
+import com.refund.app.data.mapper.SubscriptionMapper
 import com.refund.app.domain.models.Subscription
 import com.refund.app.domain.repositories.ISubscriptionRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -13,32 +15,33 @@ class SubscriptionRepository @Inject constructor(
 ) : ISubscriptionRepository {
 
     override fun getActiveSubscriptions(): Flow<List<Subscription>> {
-        return subscriptionDao.getActiveSubscriptions()
+        return subscriptionDao.getActiveSubscriptions().map { SubscriptionMapper.toDomainList(it) }
     }
 
     override fun getUpcomingSubscriptions(days: Int): Flow<List<Subscription>> {
         val daysInMillis = days * 24 * 60 * 60 * 1000L
         return subscriptionDao.getUpcomingSubscriptions(System.currentTimeMillis(), daysInMillis)
+            .map { SubscriptionMapper.toDomainList(it) }
     }
 
     override fun getHistorySubscriptions(): Flow<List<Subscription>> {
-        return subscriptionDao.getHistorySubscriptions()
+        return subscriptionDao.getHistorySubscriptions().map { SubscriptionMapper.toDomainList(it) }
     }
 
     override suspend fun getSubscriptionById(id: Long): Subscription? {
-        return subscriptionDao.getSubscriptionById(id)
+        return subscriptionDao.getSubscriptionById(id)?.let { SubscriptionMapper.toDomain(it) }
     }
 
     override suspend fun addSubscription(subscription: Subscription): Long {
-        return subscriptionDao.insert(subscription)
+        return subscriptionDao.insert(SubscriptionMapper.toEntity(subscription))
     }
 
     override suspend fun updateSubscription(subscription: Subscription) {
-        subscriptionDao.update(subscription)
+        subscriptionDao.update(SubscriptionMapper.toEntity(subscription))
     }
 
     override suspend fun deleteSubscription(subscription: Subscription) {
-        subscriptionDao.delete(subscription)
+        subscriptionDao.delete(SubscriptionMapper.toEntity(subscription))
     }
 
     override suspend fun softDeleteSubscription(id: Long) {
@@ -60,7 +63,7 @@ class SubscriptionRepository @Inject constructor(
     }
 
     override suspend fun getAllSubscriptions(): List<Subscription> {
-        return subscriptionDao.getAllSubscriptions()
+        return subscriptionDao.getAllSubscriptions().map { SubscriptionMapper.toDomain(it) }
     }
 
     /**
