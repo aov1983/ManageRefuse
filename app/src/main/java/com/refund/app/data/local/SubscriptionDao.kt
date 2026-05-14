@@ -1,33 +1,32 @@
 package com.refund.app.data.local
 
 import androidx.room.*
-import com.refund.app.domain.models.Subscription
-import com.refund.app.domain.models.Periodicity
+import com.refund.app.data.local.entity.SubscriptionEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SubscriptionDao {
 
     @Query("SELECT * FROM subscriptions WHERE isDeleted = 0 AND isActive = 1 ORDER BY nextBillingDate ASC")
-    fun getActiveSubscriptions(): Flow<List<Subscription>>
+    fun getActiveSubscriptions(): Flow<List<SubscriptionEntity>>
 
     @Query("SELECT * FROM subscriptions WHERE isDeleted = 0 AND isActive = 1 AND (nextBillingDate - :currentTime) <= :daysInMillis ORDER BY nextBillingDate ASC")
-    fun getUpcomingSubscriptions(currentTime: Long, daysInMillis: Long): Flow<List<Subscription>>
+    fun getUpcomingSubscriptions(currentTime: Long, daysInMillis: Long): Flow<List<SubscriptionEntity>>
 
     @Query("SELECT * FROM subscriptions WHERE isDeleted = 1 OR isActive = 0 ORDER BY cancelledAt DESC, createdAt DESC")
-    fun getHistorySubscriptions(): Flow<List<Subscription>>
+    fun getHistorySubscriptions(): Flow<List<SubscriptionEntity>>
 
     @Query("SELECT * FROM subscriptions WHERE id = :id")
-    suspend fun getSubscriptionById(id: Long): Subscription?
+    suspend fun getSubscriptionById(id: Long): SubscriptionEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(subscription: Subscription): Long
+    suspend fun insert(subscription: SubscriptionEntity): Long
 
     @Update
-    suspend fun update(subscription: Subscription)
+    suspend fun update(subscription: SubscriptionEntity)
 
     @Delete
-    suspend fun delete(subscription: Subscription)
+    suspend fun delete(subscription: SubscriptionEntity)
 
     @Query("UPDATE subscriptions SET isDeleted = 1, cancelledAt = :timestamp WHERE id = :id")
     suspend fun softDelete(id: Long, timestamp: Long = System.currentTimeMillis())
@@ -39,8 +38,8 @@ interface SubscriptionDao {
     suspend fun restoreSubscription(id: Long, nextDate: Long)
 
     @Query("SELECT * FROM subscriptions WHERE isDeleted = 0 AND isActive = 1")
-    suspend fun getAllActiveSubscriptions(): List<Subscription>
+    suspend fun getAllActiveSubscriptions(): List<SubscriptionEntity>
 
     @Query("SELECT * FROM subscriptions")
-    suspend fun getAllSubscriptions(): List<Subscription>
+    suspend fun getAllSubscriptions(): List<SubscriptionEntity>
 }

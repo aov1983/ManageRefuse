@@ -4,16 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.refund.app.domain.models.Subscription
-import com.refund.app.domain.models.Partner
-import com.refund.app.domain.models.Reminder
+import com.refund.app.data.local.entity.SubscriptionEntity
+import com.refund.app.data.local.entity.PartnerEntity
+import com.refund.app.data.local.entity.ReminderEntity
 import com.refund.app.domain.models.PartnerClick
 
 @Database(
     entities = [
-        Subscription::class,
-        Partner::class,
-        Reminder::class,
+        SubscriptionEntity::class,
+        PartnerEntity::class,
+        ReminderEntity::class,
         PartnerClick::class
     ],
     version = 1,
