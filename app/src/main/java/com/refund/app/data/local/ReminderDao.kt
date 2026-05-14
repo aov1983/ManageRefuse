@@ -1,11 +1,15 @@
 package com.refund.app.data.local
 
 import androidx.room.*
+import com.refund.app.data.local.entity.ReminderEntity
 import com.refund.app.domain.models.Reminder
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ReminderDao {
+
+    @Query("SELECT * FROM reminders WHERE subscriptionId = :subscriptionId AND sentAt > :sinceMillis ORDER BY scheduledTime DESC LIMIT 1")
+    suspend fun getRecentReminder(subscriptionId: Long, sinceMillis: Long): ReminderEntity?
 
     @Query("SELECT * FROM reminders WHERE subscriptionId = :subscriptionId ORDER BY scheduledTime DESC")
     fun getRemindersForSubscription(subscriptionId: Long): Flow<List<Reminder>>
@@ -17,10 +21,10 @@ interface ReminderDao {
     suspend fun getReminderById(id: Long): Reminder?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(reminder: Reminder): Long
+    suspend fun insert(reminder: ReminderEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(reminders: List<Reminder>)
+    suspend fun insertAll(reminders: List<ReminderEntity>)
 
     @Update
     suspend fun update(reminder: Reminder)

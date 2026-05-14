@@ -42,21 +42,27 @@ class NotificationHelper(private val context: Context) {
         }
     }
 
-    fun showReminder(subscription: Subscription, daysUntil: Int) {
+    fun showReminder(
+        subscriptionId: Long,
+        subscriptionName: String,
+        amount: Double,
+        daysUntil: Int,
+        nextBillingDate: Long
+    ) {
         val intent = Intent(context, com.refund.app.presentation.main.MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            putExtra("subscription_id", subscription.id)
+            putExtra("subscription_id", subscriptionId)
         }
 
         val pendingIntent = PendingIntent.getActivity(
             context,
-            subscription.id.toInt(),
+            subscriptionId.toInt(),
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
         val title = "Напоминание о подписке"
-        val body = "${subscription.name} спишут ${subscription.amount.toInt()} ₽ через $daysUntil дн."
+        val body = "$subscriptionName спишут ${amount.toInt()} ₽ через $daysUntil дн."
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
@@ -68,7 +74,18 @@ class NotificationHelper(private val context: Context) {
             .build()
 
         val notificationManager = context.getSystemService(NotificationManager::class.java)
-        notificationManager.notify(subscription.id.toInt(), notification)
+        notificationManager.notify(subscriptionId.toInt(), notification)
+    }
+
+    @Deprecated("Используйте новый метод showReminder с параметрами")
+    fun showReminder(subscription: Subscription, daysUntil: Int) {
+        showReminder(
+            subscriptionId = subscription.id,
+            subscriptionName = subscription.name,
+            amount = subscription.amount,
+            daysUntil = daysUntil,
+            nextBillingDate = subscription.nextBillingDate
+        )
     }
 
     fun cancelReminder(subscriptionId: Long) {

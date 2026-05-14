@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Яндекс Плюс Альтернатива",
+    "urlTemplate": "https://partner.example.com/yandex?utm_source=refund&utm_medium=app&user_id={user_id}",
+    "matchServiceName": "яндекс плюс",
+    "iconUrl": null
+  },
+  {
+    "id": "2",
+    "name": "IVI Альтернатива",
+    "urlTemplate": "https://partner.example.com/ivi?utm_source=refund&utm_medium=app&user_id={user_id}",
+    "matchServiceName": "ivi",
+    "iconUrl": null
+  },
+  {
+    "id": "3",
+    "name": "START Альтернатива",
+    "urlTemplate": "https://partner.example.com/start?utm_source=refund&utm_medium=app&user_id={user_id}",
+    "matchServiceName": "start",
+    "iconUrl": null
+  }
+]

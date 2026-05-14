@@ -1,4 +1,14 @@
 ```
+# Compiled and build artifacts
+*.class
+*.o
+*.obj
+*.out
+*.dll
+*.so
+*.a
+*.exe
+
 # Dependencies
 node_modules/
 venv/
@@ -6,17 +16,22 @@ venv/
 __pycache__/
 .mypy_cache/
 .pytest_cache/
-dist/
-build/
 target/
 .gradle/
 
-# Editor/IDE files
+# Build directories
+build/
+dist/
+
+# Editors
 .vscode/
 .idea/
 *.swp
 *.swo
 *.tmp
+
+# Logs
+*.log
 
 # System files
 .DS_Store
@@ -25,22 +40,13 @@ Thumbs.db
 .env.local
 *.env.*
 
-# Logs
-*.log
-
-# Coverage
+# Coverage reports
 coverage/
 htmlcov/
 .coverage
 
-# Compiled files
-*.pyc
-*.class
-*.o
-*.exe
-*.dll
-*.so
-*.a
-*.obj
-*.out
+# Android specific
+*.apk
+*.aar
+local.properties
 ```

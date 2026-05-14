@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Refund</string>
+    
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Что такое Refund?</string>
+    <string name="onboarding_desc_1">Контролируйте все свои подписки в одном месте и никогда не забывайте о списаниях</string>
+    <string name="onboarding_title_2">Как это работает?</string>
+    <string name="onboarding_desc_2">Добавьте подписки → Получайте напоминания → Отменяйте ненужное</string>
+    <string name="onboarding_title_3">Начните экономить</string>
+    <string name="onboarding_desc_3">С Refund вы можете сэкономить до 50% бюджета на подписках</string>
+    <string name="onboarding_next">Далее</string>
+    <string name="onboarding_start">Начать</string>
+    
+    <!-- Navigation -->
+    <string name="nav_dashboard">Главная</string>
+    <string name="nav_subscriptions">Подписки</string>
+    <string name="nav_profile">Профиль</string>
+    
+    <!-- Dashboard -->
+    <string name="dashboard_monthly_spend">Траты в месяц</string>
+    <string name="dashboard_total_saved">Сэкономлено</string>
+    <string name="dashboard_active_subscriptions">Активных подписок: %d</string>
+    <string name="dashboard_share">Поделиться</string>
+    <string name="dashboard_savings_progress">Вы сэкономили %.1f%% от трат</string>
+    
+    <!-- Subscriptions -->
+    <string name="subscriptions_add">Добавить подписку</string>
+    <string name="subscriptions_tab_active">Активные</string>
+    <string name="subscriptions_tab_upcoming">Скоро списание</string>
+    <string name="subscriptions_tab_history">История</string>
+    <string name="subscriptions_empty">Нет подписок. Добавьте первую!</string>
+    <string name="subscriptions_delete_confirm">Удалить подписку \"%s\"?</string>
+    <string name="subscriptions_cancel">Отменить</string>
+    <string name="subscriptions_restore">Восстановить</string>
+    <string name="subscriptions_how_to_cancel">Как отменить</string>
+    <string name="subscriptions_find_cheaper">Найти дешевле</string>
+    
+    <!-- Add/Edit Subscription -->
+    <string name="add_edit_title_add">Новая подписка</string>
+    <string name="add_edit_title_edit">Редактировать подписку</string>
+    <string name="add_edit_name">Название сервиса</string>
+    <string name="add_edit_amount">Сумма (₽)</string>
+    <string name="add_edit_start_date">Дата первого списания</string>
+    <string name="add_edit_periodicity">Периодичность</string>
+    <string name="add_edit_icon">Иконка</string>
+    <string name="add_edit_reminders">Напоминать</string>
+    <string name="add_edit_save">Сохранить</string>
+    <string name="add_edit_error_name">Введите название сервиса</string>
+    <string name="add_edit_error_amount">Введите сумму больше 0</string>
+    
+    <!-- Profile -->
+    <string name="profile_name">Ваше имя</string>
+    <string name="profile_notifications">Уведомления</string>
+    <string name="profile_export">Экспорт данных</string>
+    <string name="profile_import">Импорт данных</string>
+    <string name="profile_version">Версия %s</string>
+    
+    <!-- Common -->
+    <string name="common_ruble">₽</string>
+    <string name="common_days">%d дн.</string>
+    <string name="common_today">Сегодня</string>
+    <string name="common_tomorrow">Завтра</string>
+    <string name="common_close">Закрыть</string>
+    <string name="common_error">Ошибка</string>
+    <string name="common_success">Готово</string>
+    
+    <!-- Periodicity options -->
+    <string-array name="periodicity_options">
+        <item>Еженедельно</item>
+        <item>Ежемесячно</item>
+        <item>Ежегодно</item>
+        <item>Разово</item>
+    </string-array>
+</resources>

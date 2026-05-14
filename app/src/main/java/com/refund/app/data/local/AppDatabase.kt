@@ -4,9 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.refund.app.data.local.entity.SubscriptionEntity
+import androidx.room.TypeConverters
+import com.refund.app.data.local.dao.PartnerClickDao
+import com.refund.app.data.local.dao.PartnerDao
+import com.refund.app.data.local.dao.ReminderDao
+import com.refund.app.data.local.dao.SubscriptionDao
 import com.refund.app.data.local.entity.PartnerEntity
 import com.refund.app.data.local.entity.ReminderEntity
+import com.refund.app.data.local.entity.SubscriptionEntity
 import com.refund.app.domain.models.PartnerClick
 
 @Database(
@@ -19,6 +24,7 @@ import com.refund.app.domain.models.PartnerClick
     version = 1,
     exportSchema = false
 )
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun subscriptionDao(): SubscriptionDao

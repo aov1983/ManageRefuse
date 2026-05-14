@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboard_fragment">
+
+    <fragment
+        android:id="@id/dashboard_fragment"
+        android:name="com.refund.app.presentation.dashboard.DashboardFragment"
+        android:label="Dashboard">
+        <action
+            android:id="@+id/action_dashboard_to_subscriptions"
+            app:destination="@id/subscriptions_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@id/subscriptions_fragment"
+        android:name="com.refund.app.presentation.subscriptions.SubscriptionsFragment"
+        android:label="Subscriptions">
+        <action
+            android:id="@+id/action_subscriptions_to_add_edit"
+            app:destination="@id/add_edit_subscription_fragment" />
+        <argument
+            android:name="subscriptionId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+
+    <fragment
+        android:id="@id/profile_fragment"
+        android:name="com.refund.app.presentation.profile.ProfileFragment"
+        android:label="Profile" />
+
+    <fragment
+        android:id="@id/add_edit_subscription_fragment"
+        android:name="com.refund.app.presentation.add_edit.AddEditSubscriptionFragment"
+        android:label="AddEditSubscription">
+        <argument
+            android:name="subscriptionId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+
+    <activity
+        android:id="@id/main_activity"
+        android:name="com.refund.app.presentation.main.MainActivity"
+        android:label="MainActivity" />
+
+</navigation>
